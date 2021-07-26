@@ -1,3 +1,27 @@
+## FORK: For which allows to run page in container (Docker)
+Code for the image 'jegger/s3-bucket-listing'. You can configure the
+js-script by env-variables. The page is served by nginx (non-root) on 
+port 8080.
+
+### Usage
+Simply supply the configuration as env-variable to the container. 
+Hint: Make sure that you include the "" for the strings.  
+Example:
+```
+docker run -it -p 8080:80080 \
+    -e 'PAGE_TITLE=S3 listing'
+    -e 'BUCKET_URL="https://BUCKET.s3.amazonaws.com"'
+    -e S3BL_IGNORE_PATH=true
+    jegger/s3-bucket-listing
+```
+
+### Build / push container
+```
+docker build -t jegger/s3-bucket-listing .
+docker push jegger/s3-bucket-listing
+```
+
+## Info
 Create nice directory listings for s3 buckets using only javascript and HTML.
 
 The listing can be deployed on any site and can also be deployed into a bucket.
